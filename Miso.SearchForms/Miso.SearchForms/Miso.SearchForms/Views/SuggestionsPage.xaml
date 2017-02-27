@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:b="clr-namespace:Miso.SearchForms.Behaivors"
+             xmlns:c="clr-namespace:Miso.SearchForms.Converters"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Miso.SearchForms.Views.SuggestionsPage"
+             Title="Search"
+             NavigationPage.HasNavigationBar="true"
+             >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <c:ItemTappedEventArgsConverter x:Key="itemTappedEventArgsConverter" />
+            <c:TextChangedEventArgsConverter x:Key="textChangedEventArgsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <RelativeLayout
+        VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand">
+      <StackLayout
+          Orientation="Horizontal"
+          HorizontalOptions="CenterAndExpand"
+          RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, 
+              Property=Width, 
+              Factor=1}"
+          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+              Property=Height,
+              Factor=0.4}" >
+        <ActivityIndicator 
+            IsRunning="{Binding IsBusy}"
+            HorizontalOptions="CenterAndExpand"/>
+      </StackLayout>
+      <StackLayout 
+          Orientation="Vertical"
+          VerticalOptions="FillAndExpand"
+          RelativeLayout.XConstraint="{ConstraintExpression Type=Constant, Constant=0}"
+          RelativeLayout.YConstraint="{ConstraintExpression Type=Constant, Constant=0}"
+          RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}">
+          <SearchBar
+            x:Name="ItemSearchBar"
+            Placeholder="ex) Seattle, Seatac"
+            SearchCommand="{Binding SearchCommand}"
+            Text="{Binding SearchText}">
+              <SearchBar.Behaviors>
+                  <b:EventToCommandBehavior EventName="TextChanged"
+                                            Command="{Binding OnSearchBarTextChangedCommand}"
+                                            EventArgsConverter="{StaticResource textChangedEventArgsConverter}" />
+              </SearchBar.Behaviors>
+          </SearchBar>
+          <ListView
+            ItemsSource="{Binding ItemList}"
+            HasUnevenRows="true">
+              <ListView.Behaviors>
+                  <b:EventToCommandBehavior EventName="ItemTapped"
+                                            Command="{Binding OnListViewItemSelectedCommand}"
+                                            EventArgsConverter="{StaticResource itemTappedEventArgsConverter}" />
+              </ListView.Behaviors>
+              <ListView.ItemTemplate>
+                  <DataTemplate>
+                      <TextCell  Text="{Binding City}" />
+                  </DataTemplate>
+              </ListView.ItemTemplate>
+          </ListView>
+      </StackLayout>
+    </RelativeLayout>
+</ContentPage>

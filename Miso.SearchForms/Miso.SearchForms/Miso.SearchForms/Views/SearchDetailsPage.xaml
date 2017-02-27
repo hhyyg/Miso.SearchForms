@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Miso.SearchForms.Views.SearchDetailsPage"
+             Title="Details">
+    <StackLayout>
+        <ScrollView VerticalOptions="FillAndExpand" Orientation="Vertical">
+                <Frame Padding="10" Margin="10">
+                    <StackLayout Orientation="Vertical">
+                        <Image Source="{Binding Item.Thumbnail}" Aspect="AspectFill" HeightRequest="200" />
+
+                        <StackLayout Orientation="Horizontal" Padding="10,0" >
+                            <Label Text="No."
+                                   VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding Item.ListingId}"
+                                   Margin="0"
+                                   VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Padding="10,0">
+                            <Label Text="{Binding Item.Number}"
+                                   VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding Item.Street}"
+                                   VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding Item.City}"
+                                   VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Padding="10,0" >
+                            <Label Text="{Binding Item.Price, StringFormat='{0:C}'}"
+                                   VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding Item.Sqft, StringFormat='{0:#,0} Sq.Ft.'}"
+                                   VerticalTextAlignment="Center" />
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Padding="10,0" >
+                            <Label Text="Statis:"
+                                   VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding Item.Status}"
+                                   VerticalTextAlignment="Center"/>
+                            <Label Text="Type:"
+                                   VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding Item.Type}"
+                                   VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Padding="10,0" >
+                            <Label Text="Unit:"
+                                   VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding Item.Unit}"
+                                   VerticalTextAlignment="Center"/>
+                            <Label Text="Beds:"
+                                   VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding Item.Beds}"
+                                   VerticalTextAlignment="Center"/>
+                            <Label Text="Baths:"
+                                   VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding Item.Baths}"
+                                   VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" Padding="10,10" >
+                            <Label Text="{Binding Item.Description}" />
+                            <Label Text="{Binding Item.Description_de}" />
+                            <Label Text="{Binding Item.Description_fr}" />
+                            <Label Text="{Binding Item.Description_it}" />
+                            <Label Text="{Binding Item.Description_es}" />
+                            <Label Text="{Binding Item.Description_pl}" />
+                            <Label Text="{Binding Item.Description_nl}" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

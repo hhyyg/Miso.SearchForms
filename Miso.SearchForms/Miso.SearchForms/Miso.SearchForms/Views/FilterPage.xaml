@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:c="clr-namespace:Miso.SearchForms.Controls"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Miso.SearchForms.Views.FilterPage"
+             Title="Advanced Search">
+    <StackLayout>
+        <ScrollView VerticalOptions="FillAndExpand" Orientation="Vertical">
+            <StackLayout>
+                <TableView Intent="Settings">
+                    <TableRoot>
+                        <TableSection Title="Beds">
+                            <ViewCell>
+                                <!--min -->
+                                <StackLayout Orientation="Horizontal" Padding="20,0,10,0">
+                                    <Label
+                                        Text="Min" 
+                                        HorizontalOptions="StartAndExpand"/>
+                                    <Label
+                                        Text="{Binding Value, Source={x:Reference StepperBedsMin}}"
+                                        HorizontalOptions="End"
+                                        FontSize="Large"
+                                        VerticalTextAlignment="Center"/>
+                                    <Stepper
+                                        x:Name="StepperBedsMin"
+                                        Value="{Binding BedsMin}"
+                                        Maximum="6"
+                                        Minimum="0"
+                                        Increment="1"
+                                        HorizontalOptions="End"/>
+                                </StackLayout>
+                            </ViewCell>
+                            <ViewCell>
+                                <!--max -->
+                                <StackLayout Orientation="Horizontal" Padding="20,0,10,0">
+                                    <Label
+                                       Text="Max" 
+                                        HorizontalOptions="StartAndExpand"/>
+                                    <Label
+                                        Text="{Binding Value, Source={x:Reference StepperBedsMax}}"
+                                        HorizontalOptions="End"
+                                        FontSize="Large"
+                                        VerticalTextAlignment="Center"/>
+                                    <Stepper
+                                        x:Name="StepperBedsMax"
+                                        Value="{Binding BedsMax}"
+                                        Maximum="6"
+                                        Minimum="0"
+                                        Increment="1"
+                                        HorizontalOptions="End"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </TableSection>
+                        <TableSection Title="Status">
+                            <SwitchCell Text="Sale" On="{Binding StatusSale}"/>
+                            <SwitchCell Text="Pending" On="{Binding StatusPending}"/>
+                            <SwitchCell Text="Sold" On="{Binding StatusSold}"/>
+                        </TableSection>
+                        <TableSection Title="">
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Button
+                                        HorizontalOptions="FillAndExpand"
+                                        Text="Apply"
+                                        Command="{Binding ApplyFilterCommand}"/>
+                                    <Button
+                                        HorizontalOptions="FillAndExpand"
+                                        Text="Cancel"
+                                        Command="{Binding CancelCommand}" />
+                                </StackLayout>
+                            </ViewCell>
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>
